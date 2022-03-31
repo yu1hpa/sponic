@@ -8,8 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from './token-interceptor';
+import { httpInterceptorProviders } from './token-interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +16,7 @@ import { TokenInterceptor } from './token-interceptor';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent],
 })

@@ -62,8 +62,9 @@ export class HomePage implements OnInit{
   }
 
   async getArtistName(artistName: any) {
-    this.spotify.getArtist(artistName.target.value).subscribe( data => {
+    this.spotify.getArtistLists(artistName.target.value).subscribe( data => {
       this.artists = data;
+      console.log(this.artists);
     });
   }
 }

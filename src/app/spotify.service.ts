@@ -20,9 +20,7 @@ export class SpotifyService {
 
   getArtistAlbumWithTracks(artistId: string): Observable<any>{
     return this.getArtistAlbums(artistId).pipe(
-      tap( data => console.log(data)),
       map(albums => albums.items),
-      tap( data => console.log(data)),
       mergeMap(albums => forkJoin(
           albums.map(album => this.getAlbumTracks(album.id).pipe(map(tracks => tracks.items)))
         )
@@ -32,10 +30,16 @@ export class SpotifyService {
   }
 
   getArtist(artistName: string): Observable<any>{
-    return this.http.get(`${this.baseUrl}/search`, { params: { q: `artist:${artistName}`, type: `artist`} })
+    return this.http.get<any>(`${this.baseUrl}/search`, { params: { q: `artist:${artistName}`, type: `artist`} });
+  }
+  getArtistLists(artistName: string): Observable<any> {
+    return this.getArtist(artistName)
       .pipe(
-        //tap( data => console.log(data.artists)),
-        map(data => data.items)
+        map(data => data?.items),
+        tap(data => console.log(data)),
+        mergeMap(items => forkJoin(
+          items.map(item => this.getArtistAlbumWithTracks(item.id))
+        ))
       );
   }
 }
