@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Title
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar>
+
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>Ready to create an app?</strong>
+    <p *ngFor="let track of tracks">
+      {{ track.name }}
+    </p>
+  </div>
+</ion-content>

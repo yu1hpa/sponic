@@ -1,0 +1,7 @@
+{
+  "name": "sponic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
