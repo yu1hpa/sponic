@@ -5,8 +5,10 @@
     </ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar>
-
+    <ion-searchbar
+      showCancelButton="never"
+      placeholder="アーティスト名"
+      (ionInput)="getArtistName($event)">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>

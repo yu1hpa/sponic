@@ -25,8 +25,11 @@ export class SpotifyService {
           albums.map(album => this.getAlbumTracks(album.id).pipe(map(tracks => tracks.items)))
         )
       ),
-      tap(tracks => console.log(tracks)),
       map((tracks: any[][]) => tracks.reduce((acc, curr) => [...acc, ...curr], []))
     );
+  }
+
+  getArtist(artist: string): Observable<any>{
+    return this.http.get(`${this.baseUrl}/search`, { params: { q: `artist:${artist}`, type: `artist`} });
   }
 }

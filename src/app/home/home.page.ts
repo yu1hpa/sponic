@@ -50,14 +50,21 @@ export interface ImagesEntity {
 
 export class HomePage implements OnInit{
   tracks: any[];
+  artists: any[] = [];
 
   constructor(private spotify: SpotifyService) {}
 
   ngOnInit() {
 
-    this.spotify.getArtistAlbumWithTracks('57dN52uHvrHOxijzpIgu3E').subscribe(data => {
-      console.log(data);
+    this.spotify.getArtistAlbumWithTracks('1S2S00lgLYLGHWA44qGEUs').subscribe(data => {
       this.tracks = data;
+    });
+  }
+
+  async getArtistName(artistName: any) {
+    this.spotify.getArtist(artistName.target.value).subscribe( data => {
+      this.artists = data;
+      console.log(this.artists);
     });
   }
 }
