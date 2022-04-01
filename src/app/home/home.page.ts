@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {SpotifyService} from '../spotify.service';
-import {NavController} from '@ionic/angular';
+import { Component } from '@angular/core';
+import { SpotifyService } from '../spotify.service';
+import { NavController } from '@ionic/angular';
 export interface ArtistAlbum {
   href: string;
   items?: (ItemsEntity)[] | null;
@@ -66,7 +66,7 @@ export class HomePage{
   }
 
   // クリックした要素のIdをgetArtistAlbumWithTracksの引数に渡す
-  public async clickArtistName(artistId: string) {
-      this.navCtrl.navigateForward(['artist-songs', artistId]);
+  async clickArtistName(artistId: string) {
+      await this.navCtrl.navigateForward(['artist-songs', artistId]);
   }
 }

@@ -8,10 +8,10 @@
 </ion-header>
 
 <ion-content>
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p *ngFor="let track of tracks">
-      {{ track.name }}
-    </p>
-  </div>
+  <ion-list>
+    <ion-item *ngFor="let track of tracks">
+    <ion-label> {{ track.name }} </ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+  </ion-list>
 </ion-content>
