@@ -35,11 +35,7 @@ export class SpotifyService {
   getArtistLists(artistName: string): Observable<any> {
     return this.getArtist(artistName)
       .pipe(
-        map(data => data?.items),
-        tap(data => console.log(data)),
-        mergeMap(items => forkJoin(
-          items.map(item => this.getArtistAlbumWithTracks(item.id))
-        ))
+        map(data => data?.artists.items),
       );
   }
 }

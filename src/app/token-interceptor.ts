@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  accessToken = 'BQBvOAtJrUBsiK4wZghoYfwFj6z210JhrP4UbFTNH-jldgPa0WouQ9QqBzAGHtTvyvrhKsBjBiuuquDoLLc';
+  accessToken = '';
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const headers = req.headers.append('Authorization', `Bearer ${this.accessToken}`);
     const newRequest = req.clone({ headers });

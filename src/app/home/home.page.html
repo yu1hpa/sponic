@@ -20,15 +20,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p *ngFor="let track of tracks">
-      {{ track.name }}
-    </p>
-  </div>
-  <div>
-    <p *ngFor="let artist of artists">
-      {{ artist }}
-    </p>
-  </div>
+  <ion-list>
+    <ion-item button *ngFor="let artistName of artistsName" (click)="clickArtistName(artistName.id)">
+      <ion-label> {{ artistName.name }} </ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

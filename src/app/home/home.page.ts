@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../spotify.service';
+import {NavController} from '@ionic/angular';
 export interface ArtistAlbum {
   href: string;
   items?: (ItemsEntity)[] | null;
@@ -48,23 +49,24 @@ export interface ImagesEntity {
   styleUrls: ['home.page.scss'],
 })
 
-export class HomePage implements OnInit{
-  tracks: any[];
-  artists: any[] = [];
+export class HomePage{
+  public tracks: any[];
+  artistsName: any[] = [];
 
-  constructor(private spotify: SpotifyService) {}
-
-  ngOnInit() {
-
-    this.spotify.getArtistAlbumWithTracks('1S2S00lgLYLGHWA44qGEUs').subscribe(data => {
-      this.tracks = data;
-    });
-  }
+  constructor(
+    private spotify: SpotifyService,
+    private navCtrl: NavController
+  ) {}
 
   async getArtistName(artistName: any) {
     this.spotify.getArtistLists(artistName.target.value).subscribe( data => {
-      this.artists = data;
-      console.log(this.artists);
+      this.artistsName = data;
+      console.log(this.artistsName);
     });
+  }
+
+  // クリックした要素のIdをgetArtistAlbumWithTracksの引数に渡す
+  public async clickArtistName(artistId: string) {
+      this.navCtrl.navigateForward(['artist-songs', artistId]);
   }
 }
